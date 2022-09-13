@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Tela de Login</title>>
+</head>
+
+<body>
+  <div class="inputBox">
+   
+
+    <label for="senha" id="materia" style="color:rgb(255, 255, 255) ;">Matéria:</label><br>
+  <input class="materia"type="password" id="password" minlength="4" maxlength="10" size="10" placeholder="  materia"><br>
+
+    <label for="senha" id="ensino" style="color:rgb(255, 255, 255) ;">Ensino:</label><br>
+    <select class="form-control" id="ensino">
+      <option selected>Escolha</option>
+      <option value="Fundamental">Fundamental</option>
+      <option value="Médio">Médio</option>
+      <option value="Outro">Outro</option>
+
+    </select>
+    <br>
+    <br>
+
+    <label for="senha" id="serie" style="color:rgb(255, 255, 255) ;">sere:</label><br>
+
+    <select class="l" id="serie">
+      <option selected>Escolha</option>
+      <option value="1ºano">1ºano</option>
+      <option value="2ºano">2ºano</option>
+      <option value="3ºano">3ºano</option>
+      <option value="4ºano">4ºano</option>
+      <option value="5ºano">5ºano</option>
+      <option value="6ºano">6ºano</option>
+      <option value="7ºano">7ºano</option>
+      <option value="8ºano">8ºano</option>
+      <option value="9ºano">9ºano</option>
+      <option value="outro">Outro</option>
+
+    </select>
+
+
+    <button onclick="cadastrar()">Cadastrar</button>
+  </div>
+</div>
+
+
+
+  <hr>
+
+  <p id="dadosInseridos"></p>
+
+  <script>
+    //Crição do array alunos vazio
+    const salas = []
+
+    //Função para limpar os dados dos inputs
+    function limparDados() {
+      document.getElementById('materia').value = ''
+      document.getElementById('ensino').value = ''
+      document.getElementById('serie').value = ''
+    }
+
+    //Função para remover um determinado valor do array
+    function remover(index) {
+      salas.splice(index, 1)
+
+      return document.getElementById('dadosInseridos').innerHTML = '<h3 class="danger">Aluno Removido com Sucesso!</h3>' + exibir()
+    }
+
+    //Função para exibir todos os dados dos alunos que estão no array
+    function exibir() {
+      html = '<h2>Salas Cadastradas</h2>'
+
+      html += '<ul>'
+
+      salas.forEach((sala, index) => {
+        html += '<li><p>Materia: <strong>' +sala.materia + '</strong></p>'
+        html += '<p>Ensino: <strong>' + sala.ensino + '</strong></p>'
+        html += '<p>Série: <strong>' + sala.serie + '</strong></p>'
+        html += '<p><a onclick="remover(' + index + ')">Remover</a></p></li>'
+        html += '<hr>'
+      })
+
+      html += '</ul>'
+
+      limparDados()
+
+      return document.getElementById('dadosInseridos').innerHTML = html
+    }
+
+    //Função para cadastrar um novo aluno e inseri-lo no array
+    function cadastrar() {
+      var materia = document.getElementById('materia').value
+      var ensino = document.getElementById('ensino').value
+      var serie = document.getElementById('serie').value
+
+      sala = {materia: materia, ensino: ensino, serie: serie }
+
+      salas.push(sala)
+
+      exibir()
+
+    }
+  </script>
+  </script>
+</body>
+
+</html>
